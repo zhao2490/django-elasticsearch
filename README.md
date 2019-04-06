@@ -2,7 +2,7 @@
 A Django + elasticsearch demo  
 # 实现功能  
 模仿思否的搜索功能实现对文章进行关键字检索  
-检索到的数据在页面中高亮显示  
+关键字在前端页面中高亮显示  
 # 使用步骤
 请在elasticsearch安装目录下的plugins文件夹下放IK分词器  
 运行utils目录下create_elastic_index.py文件创建elasticsearch的mappings    
