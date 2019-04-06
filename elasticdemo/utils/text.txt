@@ -1,0 +1,736 @@
+
+<img>img_node</img>
+
+写在前面
+看到 JDK 12又发布了，萌新不知不觉感觉瑟瑟发抖，从 Java 1.8的函数式编程思维和范式 到 Java 1.9的模块化特性的加持 以及还没来得及深切感受一下 Java 1.11 的 ZGC强大之后，这次JDK 12到底有搞了些啥事情呢？我真的学不动了，我该怎么办呢？
+不管怎样，下面还是来看一下JDK 12的新特性解（fan）读（yi）吧！
+
+低暂停延时的垃圾收集器 (实验版)
+A Low-Pause-Time Garbage Collector (Experimental)
+添加一个名为 Shenandoah的新垃圾收集 (GC)算法，该算法通过与正在运行的 Java线程并发执行回收工作来减少 GC暂停时间。Shenandoah的暂停时间与堆大小无关，这意味着无论堆大小是 200MB 还是 200GB，都将拥有相同的暂停时间。
+
+微基准测试套件
+Microbenchmark Suite
+在 JDK源代码中添加了一组基本的微基准测试套件，使得开发人员无论运行现有的微基准测试或者创建新的微基准测试都变得十分便利。
+
+Switch 表达式 (预览版)
+Switch Expressions (Preview)
+这是一个预览版语言特性。通过对 switch语法进行了扩展，使其不仅可以作为语句（statement），还可以作为表达式（expression），并且两种形式都可以使用“传统的”或“简化的”语法用于作用于不同的范围或者控制执行流。这些更改将会简化日常编码，并且为在 switch中使用模式匹配 (JEP 305) 做好了准备。
+
+JVM 常量API
+JVM Constants API
+引入一个API来建模关键类文件（key class-file）和运行时构件（run-time artifacts）的标称描述，特别是对那些可从常量池加载的常量。
+
+仅保留 AArch64 实现
+One AArch64 Port, Not Two
+删除与 arm64实现相关的所有源代码，同时保留 32-bit ARM和 64-bit aarch64实现。删除这些实现是为了让所有代码贡献者集中精力于一个实现上，从而消除维护两个实现所需付出的重复工作。
+
+默认类数据共享归档文件
+Default CDS Archives
+增强 JDK构建过程，在 64位平台上使用默认的类列表生成类数据共享(class data-sharing，CDS)存档。
+
+可中断的 G1 Mixed GC
+Abortable Mixed Collections for G1
+如果 Mixed GC 的 G1 存在超出暂停目标的可能性，则使其可被中止。
+
+G1未使用分配内存即时返回
+Promptly Return Unused Committed Memory from G1
+增强 G1垃圾收集器，以便在空闲时自动将 Java 堆内存返回给操作系统。
+
+参考文献
+
+http://openjdk.java.net/jeps/189
+http://openjdk.java.net/jeps/230
+http://openjdk.java.net/jeps/325
+http://openjdk.java.net/jeps/334
+http://openjdk.java.net/jeps/340
+http://openjdk.java.net/jeps/341
+http://openjdk.java.net/jeps/344
+http://openjdk.java.net/jeps/346
+
+
+后 记
+啥都不说了，JDK 13您慢点出吧，快要掉队了，我跟不上了...
+由于能力有限，若有错误或者不当之处，还请大家批评指正，一起学习交流！
+My Personal Blog：CodeSheep  程序羊
+
+
+
+
+
+href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img>img_node</img>举报
+
+
+
+
+赞|
+8 收藏|2
+                                    赞赏支持
+                                如果觉得我的文章对你有用，请随意赞赏
+
+                    OA_show(3);
+                
+你可能感兴趣的
+
+
+
+4 条评论
+
+默认排序
+时间排序
+
+
+
+
+
+
+<img>img_node</img>
+
+
+
+
+
+
+dafanzhijian
+
+  ·  3月20日
+
+新东西太多，交付给用户实际使用的功能才是王道。现在都只需要打开浏览器写 SQL 就能完成全部系统开发工作了：https://enhancer.io
+
+
+新东西太多，交付给用户实际使用的功能才是王道。现在都只需要打开浏览器写 SQL 就能完成全部系统开发工作了：https://enhancer.io
+
+
+
+
+
+赞
+
+
+回复
+
+取消
+保存
+
+
+
+
+添加回复
+
+
+
+
+
+
+<img>img_node</img>
+
+
+
+
+
+
+amos
+
+  ·  3月21日
+
+我是b站小伙伴嗷。
+
+
+我是b站小伙伴嗷。
+
+
+
+
+
+赞
+
+
+回复
+
+取消
+保存
+
+
+
+
+添加回复
+
+
+
+
+
+
+<img>img_node</img>
+
+
+
+
+
+
+iceMilk
+
+  ·  3月21日
+
+救救孩子 我快学不动了
+
+
+救救孩子 我快学不动了
+
+
+
+
+
+赞
+
+
+回复
+
+取消
+保存
+
+
+
+
+添加回复
+
+
+
+
+
+
+<img>img_node</img>
+
+
+
+
+
+
+justgozxb
+
+  ·  3月21日
+
+更新快是也好，以前更新慢又说特性太少，众口难调
+
+
+更新快是也好，以前更新慢又说特性太少，众口难调
+
+
+
+
+
+赞
+
+
+回复
+
+取消
+保存
+
+
+
+
+添加回复
+
+
+
+
+
+载入中...
+显示更多评论
+
+
+<img>img_node</img>
+
+
+
+
+placeholder="文明社会，理性评论">
+
+
+发布评论
+
+
+
+
+
+
+
+
+
+
+<img>img_node</img>
+
+                    .job-recommend-area a:not(:last-of-type) {margin-bottom:10px; display: block}
+                    .job-recommend-area a:hover {text-decoration: none;}
+                
+
+
+推广链接
+
+
+                            OA_show(7);
+                            OA_show(9);
+                            OA_show(10);
+                            OA_show(15);
+                            OA_show(16);
+                        
+
+
+
+                    .job-recommend {margin-bottom: 30px;}
+                    .job-title {
+                        font-size: 14px;
+                        color: #017E66;
+                        font-weight: 500;
+                        background: #BFE6D7;
+                        margin: 0;
+                        padding-top: 6px;
+                        padding-bottom: 6px;
+                        text-align: center;
+                    }
+                    .job-recommend-area {
+                      padding: 13px;
+                      border: 3px solid #EBF7F3;
+                      border-top: none;
+                    }
+                    
+
+
+
+
+                            OA_show(1);
+                        
+
+
+
+
+目录
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+×Close
+
+分享
+
+
+
+                    分享到微博？
+                
+
+
+取消
+分享
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+我要该，理由是：
+
+
+
+
+
+
+返回重选
+取消
+提交
+
+
+
+
+
+
+
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+SEO标题：
+
+
+SEO描述：
+
+
+SEO keywords：
+
+
+
+
+
+取消
+提交
+
+
+
+
+
+
+
+
+在 SegmentFault，学习技能、解决问题
+每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。
+
+
+
+免费注册
+立即登录
+
+
+
+
+
+
+    OA_show(4);
+
+
+
+
+
+产品
+热门问答
+热门专栏
+热门讲堂
+最新活动
+圈子
+酷工作
+移动客户端
+
+
+资源
+每周精选
+用户排行榜
+徽章
+帮助中心
+声望与权限
+社区服务中心
+开发手册
+
+
+商务
+人才服务
+企业培训
+活动策划
+广告投放
+区块链解决方案
+合作联系
+
+
+关于
+关于我们
+加入我们
+联系我们
+
+
+关注
+产品技术日志
+社区运营日志
+市场运营日志
+团队日志
+社区访谈
+
+
+
+微信
+
+
+新浪微博
+
+
+Github
+
+
+Twitter
+
+
+
+
+
+条款
+服务条款
+内容许可
+
+<img>img_node</img>
+
+扫一扫下载 App
+
+
+
+
+
+            Copyright  2011-2019 SegmentFault. 当前呈现版本 19.02.27
+浙ICP备 15005796号-2
+浙公网安备 33010602002000号
+杭州堆栈科技有限公司版权所有
+CDN 存储服务由 又拍云 赞助提供 
+
+
+移动版
+桌面版
+
+
+
+
+回顶部
+
+
+
+
+
+
+
+
+
+手机号 或 Email
+placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                
+
+密码忘记密码
+placeholder="请输入密码">
+                
+
+手机验证码登录
+
+
+登录
+                    
+
+
+
+更多登录方式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    注册新账号
+            
+
+登录即表示你同意网站的《服务条款》 
+
+
+
+
+
+
+
+你的名字
+placeholder="真实姓名或常用昵称">
+                
+
+手机号
+placeholder="11 位手机号">
+                
+
+
+
+
+
+
+<img>img_node</img>
+
+
+
+
+
+
+
+
+
+                                获取验证码
+
+
+
+
+
+密码
+placeholder="不少于 6 位的密码">
+                
+
+注册
+                    
+
+
+更多登录方式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    已有账号登录
+            
+
+登录即表示你同意网站的《服务条款》 
+
+
+
+
+
+
+
+
+手机号
+placeholder="11 位手机号"
+                           autocomplete="off">
+                    
+
+
+验证码
+
+
+
+获取验证码
+
+
+
+
+
+密码登录（手机号或 Email）
+
+
+登录
+                    
+
+
+
+更多登录方式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    注册新账号
+            
+
+登录即表示你同意网站的《服务条款》 
+
+
+
+
+
+            为了保证账号安全，请先绑定手机
+        
+
+
+
+手机号码
+
+
+
+
+
+
+验证码
+
+
+
+
+获取验证码
+
+
+
+
+
+
+
+
+
+
+    window.serverTime = 1554465509000;
+
+
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://static.segmentfault.com/v-5c8b4d77"
+        };
+        w.SF.token = (function () {
+    var _3ojtISf = //'zcu'
+'34e'+''///*'frT'*/'frT'
++'12'//'K1R'
++//'HMO'
+'1'+'5f4'//'PS8'
++'a'//'1h'
++'1'//'GbA'
++'65'//'mzX'
++//'WCD'
+'8aa'+'S0'//'S0'
++/* 'm'//'m' */''+//'Baf'
+'Baf'+//'Bl6'
+'1'+//'0'
+'39'+'9f7'//'KJF'
++'bae'//'ctg'
++'c3b'//'6G'
++'c52'//'qHo'
++'c'//'8'
+, _HSsuXY = [[16,18],[16,19]];
+
+    for (var i = 0; i 
