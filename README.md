@@ -1,5 +1,5 @@
 # django-elasticsearch
-A Django + elasticsearch demo  
+A Django + elasticsearch project    
 # 实现功能  
 模仿思否的搜索功能实现对文章进行关键字检索  
 关键字在前端页面中高亮显示  
