@@ -1,6 +1,8 @@
 # django-elasticsearch
-Django + elasticsearch demo
-对elasticsearch中的数据进行全文检索
+A Django + elasticsearch demo  
+# 实现功能  
+对elasticsearch中的数据进行全文检索  
+检索到的数据在页面中高亮显示  
 # 使用步骤
 请在elasticsearch安装目录下的plugins文件夹下放IK分词器  
 utils目录下create_elastic_index.py文件创建elasticsearch的mappings    
