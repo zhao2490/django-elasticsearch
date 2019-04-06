@@ -21,21 +21,38 @@ class IndexView(View):
         if action_type not in TAGS_LIST:
             action_type = ' '.join(TAGS_LIST)
         body = {
-            "size": 2,
+            "size": 10,
             "query": {
                 "bool": {
-                    "must": [
-                        {
-                            "match": {
-                                "title": search_msg
-                            }
-                        },
-                        {
-                            "match": {
-                                "action_type": action_type
-                            }
-                        }
-                    ]
+                    "should": [
+                        {"bool": {
+                            "must": [
+                                {
+                                    "match": {
+                                        "title": search_msg
+                                    }
+                                },
+                                {
+                                    "match": {
+                                        "action_type": action_type
+                                    }
+                                }
+                            ]
+                        }},
+                        {"bool": {
+                            "must": [
+                                {
+                                    "match": {
+                                        "content": search_msg
+                                    }
+                                },
+                                {
+                                    "match": {
+                                        "action_type": action_type
+                                    }
+                                }
+                            ]
+                        }}, ]
                 }
             },
             "highlight": {
@@ -46,6 +63,7 @@ class IndexView(View):
                 }
             }
         }
+
         res = es.search(index='sifou', doc_type='doc', body=body, filter_path=['hits.total', 'hits.hits'])
         print(res)
         return JsonResponse(res)

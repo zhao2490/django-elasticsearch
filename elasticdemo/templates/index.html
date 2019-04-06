@@ -94,9 +94,14 @@
                 $("#data_num").html("找到约 <b style='color:red'>" + data['hits']['total'] + "</b> 条");
                 if (data != '') {
                     $.each(data['hits']['hits'], function (index, item) {
-                        //console.log(item['_source']['title'])
-                        tag += "<div><a href='/myes/article/" + item['_source']['uid'] + "'>" + item['highlight']['title'];
-                        tag += "</a><p style='overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;'>" + item['_source']['content'] + "</p></div>"
+                        // console.log(item['_source']['title']);
+                        if(item['highlight']){
+                            tag += "<div><a href='/myes/article/" + item['_source']['uid'] + "'>" + item['highlight']['title'];
+                            tag += "</a><p style='overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;'>" + item['_source']['content'] + "</p></div>"
+                        }else{
+                            tag += "<div><a href='/myes/article/" + item['_source']['uid'] + "'>" + item['_source']['title'];
+                            tag += "</a><p style='overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;'>" + item['_source']['content'] + "</p></div>"
+                        }
                     });
                     $("#search_content").html(tag)
                 }
@@ -112,6 +117,6 @@
         foo();
     });
 
-    $('#my_search').bind('input propertychange',foo)
+    // $('#my_search').bind('input propertychange',foo)
 </script>
 </html>
